@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog">
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Usage Blog</h1>
+            <p class="tagline">Document, don't teach.</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#blog">Blog</a></li>
+        </div>
+    </nav>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2>Project Name TBC</h2>
+                <p>TBC...</p>
+            </div>
+        </section>
+
+        <section id="blog" class="section">
+            <div class="container">
+                <h2>Recent Posts</h2>
+                
+                <article class="blog-post">
+                    <h3>AI Coding Day One</h3>
+                    <time datetime="2026-02-01">Mon Feb 2, 2026</time>
+                    <p>Started using Cursor today. It seems like the tool of choice to get up and running so this was a good starting point. People also talk a lot about Claude Code so to get the most out of my journey I switching to the Sonnet 4.5 model in Cursor to help me on the journey (for now).</p>
+                    <p>The goal of this project is to have a very simple site that I can use to keep track of my journey with AI-assited toolstools. With this in mind my first set of prompts built out the foundations with a very simple index HTML page and CSS file. The first version was quick opinionated in style, but this needed to be simple in both functionlity and in aesthetics. So after a few tweaks we got to a minimally styled page.</p>
+                    <p>I did however want a little more sophisitcation when viewing the site whilst building things out. So this is why I opted to prompt for a local server to run at localhost:8000 (so I'm not digging through directories to open the page), and  the worthy addition of a hot reload so chaged are visible immediatley on save.</p>
+                    <p>This feels fun. 30 minutes and a couple of small wins that ironically remind me of a simplier time of web dev.</p>
+                    <p>Next up: a nicer writing experience.</p>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Tim Gale. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Development only: Auto-reload on file changes -->
+    <script>
+        (function() {
+            let lastModified = {
+                html: null,
+                css: null
+            };
+            
+            async function checkForChanges() {
+                try {
+                    // Check HTML file
+                    const htmlResponse = await fetch(window.location.href, { 
+                        method: 'HEAD',
+                        cache: 'no-cache'
+                    });
+                    const htmlMod = htmlResponse.headers.get('Last-Modified');
+                    
+                    // Check CSS file
+                    const cssResponse = await fetch('styles.css', { 
+                        method: 'HEAD',
+                        cache: 'no-cache'
+                    });
+                    const cssMod = cssResponse.headers.get('Last-Modified');
+                    
+                    // Initialize on first run
+                    if (lastModified.html === null) {
+                        lastModified.html = htmlMod;
+                        lastModified.css = cssMod;
+                        return;
+                    }
+                    
+                    // Reload if files changed
+                    if (htmlMod !== lastModified.html || cssMod !== lastModified.css) {
+                        console.log('Files changed, reloading...');
+                        window.location.reload();
+                    }
+                } catch (error) {
+                    console.error('Error checking for changes:', error);
+                }
+            }
+            
+            // Check every 1 second
+            setInterval(checkForChanges, 1000);
+            checkForChanges();
+        })();
+    </script>
+</body>
+</html>

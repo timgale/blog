@@ -1,0 +1,32 @@
+/* Minimal base styles - mostly browser defaults */
+body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Simple navigation list */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+/* Basic spacing */
+section {
+    margin-bottom: 40px;
+}
+
+article {
+    margin-bottom: 30px;
+}
+
+/* Keep address normal style */
+address {
+    font-style: normal;
+}
